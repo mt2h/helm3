@@ -1,6 +1,6 @@
 # helm3
 
-## Commands
+## Commands Use Helm
 ```bash
 #install helm
 sudo snap install helm --classic
@@ -56,9 +56,12 @@ helm rollback my-apache 3
 helm history my-apache #new relase from release 3
 helm history my-apache
 
-#command DELETE
-helm uninstall --dry-run my-apache
+#commands DELETE
+helm uninstall --dry-run my-apache #show TODO
 helm uninstall --keep-history my-apache #save history
+
+#commands CREATE
+helm create chart1
 
 #other commands
 helm repo list
@@ -73,4 +76,12 @@ kubectl get svc --namespace default -w my-apache #w -> watch
 kubectl logs my-apache-76c49dd54-dw927
 minikube ip
 curl http://$(minikube ip):31078
+```
+
+## Commands Deploy
+```bash
+cd charts/chart1 && helm install r1 .
+kubectl get pods
+helm install --dry-run d1 .#check TODO
+helm install --debug --dry-run d1 .
 ```
