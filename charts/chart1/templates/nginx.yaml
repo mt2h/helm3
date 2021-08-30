@@ -1,10 +1,16 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: {{ .Release.Name }}-nginx1
+  name: {{.Release.Name}}-nginx1
   labels:
-    zone: prod
-    version: v1
+    zone: example
+    version: production
+  annotations: {
+    namespace: name-{{.Release.Namespace}},
+    upgrade: upgrade-{{.Release.IsUpgrade}},
+    install: install-{{.Release.IsInstall}},
+    revision: revision-{{.Release.Revision}}
+    }
 spec:
   containers:
    - name: nginx
