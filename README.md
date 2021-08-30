@@ -37,7 +37,7 @@ helm show values bitnami/apache | grep port
 helm show readme bitnami/apache
 helm show chart bitnami/apache #info chart
 helm show values bitnami/apache #info values defined chart
-helm list #change REVISION
+helm list #change REVISION / helm ls
 helm show all bitnami/apache
 
 #commands UPGRADE
@@ -61,7 +61,7 @@ helm uninstall --dry-run my-apache #show TODO
 helm uninstall --keep-history my-apache #save history
 
 #commands CREATE
-helm create chart1
+helm create chart1 .
 
 #other commands
 helm repo list
@@ -84,4 +84,9 @@ cd charts/chart1 && helm install r1 .
 kubectl get pods
 helm install --dry-run d1 .#check TODO
 helm install --debug --dry-run d1 .
+
+#in case of install with errors
+helm install mysql1 .
+#after install run
+helm upgrade mysql1 .
 ```
