@@ -1,0 +1,6 @@
+limits:
+    memory: "200Mi"
+    cpu: "2"
+requests:
+    memory: "100Mi"
+    cpu: "0.5"

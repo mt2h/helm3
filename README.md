@@ -85,8 +85,26 @@ kubectl get pods
 helm install --dry-run d1 .#check TODO
 helm install --debug --dry-run d1 .
 
+#view how to install chart before to do install
+helm install --dry-run mysql1 .
 #in case of install with errors
 helm install mysql1 .
-#after install run
+#after install run, with changes
 helm upgrade mysql1 .
 ```
+
+## Commands changes
+
+```bash
+#view chart before apply changes
+helm get manifest value1
+#view change to apply
+helm upgrade --dry-run value1 . -f values1.yaml
+#apply changes
+helm upgrade value1 . -f values1.yaml
+#change values with --set
+helm upgrade value1 . --set limits.memory="200Mi"
+```
+
+## Board
+![Board](./img/board.jpeg)
