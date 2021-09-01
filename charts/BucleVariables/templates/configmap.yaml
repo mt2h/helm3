@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Release.Name}}-config
+  namespace: default
+data:
+  departments: |-
+    {{- range $index,$value:=.Values.departments}}
+    - {{$index}}:{{$value}}
+    {{- end}}

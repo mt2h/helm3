@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Release.Name}}-svc-apache
+  labels:
+     app: apache
+spec:
+  {{- if eq .Values.typeservice "n"}}
+  type: NodePort
+  {{- else}}
+  type: ClusterIP
+  {{- end}}
+  ports:
+  - port: {{.Values.port}}
+    {{- if eq .Values.typeservice "n"}}
+    nodePort: {{.Values.nodeport}}
+    {{- end}}
+    protocol: TCP
+  selector:
+     app: apache

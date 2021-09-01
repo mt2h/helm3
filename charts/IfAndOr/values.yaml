@@ -1,0 +1,21 @@
+replicas: 4
+
+port: 80
+nodeport: 30002
+
+##############################################
+##  Service type     --> n   for NodePort    #
+##                       c   for ClusterIp   #
+##############################################
+
+typeservice: "c"
+
+##############################################
+##  entorno  -->  desarrollo      #
+##                test
+##                produccion
+##############################################
+
+environment: testing #development
+
+department: RRHH
