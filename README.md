@@ -23,6 +23,7 @@ helm search repo stable | grep -v DEPRECATED #find all repos without  deprecated
 helm search repo stable | wc -l #count
 helm search hub httpd -o yaml #find in artifact hub
 helm search repo apache --version 1.05 #find with version
+helm search repo bitnami/mariadb --versions #view all available versions for to install
 
 #commands GET
 helm get manifest my-apache #view manifest YAML how to created
@@ -39,6 +40,7 @@ helm show chart bitnami/apache #info chart
 helm show values bitnami/apache #info values defined chart
 helm list #change REVISION / helm ls
 helm show all bitnami/apache
+helm show values prometheus-community/prometheus-adapter > ~/prometheus-adapter.values.yaml
 
 #commands UPGRADE
 helm upgrade my-apache bitnami/apache
@@ -59,6 +61,7 @@ helm history my-apache
 #commands DELETE
 helm uninstall --dry-run my-apache #show TODO
 helm uninstall --keep-history my-apache #save history
+helm -n monitoring uninstall prometheus-adapter
 
 #commands CREATE
 helm create chart1 .
@@ -91,6 +94,8 @@ helm install --dry-run mysql1 .
 helm install mysql1 .
 #after install run, with changes
 helm upgrade mysql1 .
+#install with namespace
+helm -n monitoring install prometheus-adapter
 ```
 
 ## Commands changes
@@ -104,6 +109,14 @@ helm upgrade --dry-run value1 . -f values1.yaml
 helm upgrade value1 . -f values1.yaml
 #change values with --set
 helm upgrade value1 . --set limits.memory="200Mi"
+#upgrade version with debug stdout
+helm upgrade rabbitmq bitnami/rabbitmq --version 8.12.2 -n client -f values.yaml --debug
+```
+
+## Teplate
+
+```bash
+helm template adapter -n monitoring prometheus-community/prometheus-adapter -f ~/adapter.yaml > adapter.yaml
 ```
 
 ## Board
